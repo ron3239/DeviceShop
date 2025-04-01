@@ -1,0 +1,17 @@
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\bin\Debug\DeviceShop.exe.config
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\bin\Debug\DeviceShop.exe
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\bin\Debug\DeviceShop.pdb
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.csproj.AssemblyReference.cache
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\MainWindow.g.cs
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\App.g.cs
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop_MarkupCompile.cache
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop_MarkupCompile.lref
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\MainWindow.baml
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.g.resources
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.Properties.Resources.resources
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.csproj.GenerateResource.cache
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.csproj.CoreCompileInputs.cache
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.exe
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.pdb
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\Main.g.cs
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\Main.baml

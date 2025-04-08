@@ -21,6 +21,6 @@
             <Image Source="./assets/logo.png"/>
         </Grid>
 
-        <Frame Grid.Row="1" x:Name="MainFrame"></Frame>
+        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ef70b6c557234b0c8f93ffd8b229b051" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="DeviceShopModel.Accessories" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeviceShopModel.Article" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeviceShopModel.Details" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeviceShopModel.Gost" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeviceShopModel.sysdiagrams" Width="1.5" PointX="11.375" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeviceShopModel.TypeDetails" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeviceShopModel.TypeMaterial" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeviceShopModel.Unit" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="DeviceShopModel.FK_Accessories_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="DeviceShopModel.FK_Accessories_TypeMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="DeviceShopModel.FK_Accessories_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="DeviceShopModel.FK_Details_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="DeviceShopModel.FK_Details_Gost" ManuallyRouted="false" />
+        <AssociationConnector Association="DeviceShopModel.FK_Details_TypeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="DeviceShopModel.FK_Details_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="DeviceShopModel.FK_Details_Unit1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

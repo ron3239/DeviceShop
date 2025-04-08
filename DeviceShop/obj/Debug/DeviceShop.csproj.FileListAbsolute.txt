@@ -15,3 +15,14 @@ C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.exe
 C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.pdb
 C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\Main.g.cs
 C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\Main.baml
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\AccountingEquipment.g.cs
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\AccountingEquipment.baml
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\makingOrder.g.cs
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\makingOrder.baml
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\bin\Debug\EntityFramework.dll
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\bin\Debug\EntityFramework.xml
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop_Content.g.cs
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\DeviceShop.csproj.CopyComplete

@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DeviceShop.components.screen
 {
@@ -23,6 +11,42 @@ namespace DeviceShop.components.screen
         public AccountingEquipment()
         {
             InitializeComponent();
+            DeviceShopEntities dataBase = new DeviceShopEntities();
+            DataGrid.ItemsSource = dataBase.Details.ToList();
+        }
+
+    }
+
+}
+
+/*namespace DeviceShop.components.screen
+{
+    public partial class AccountingEquipment : Page
+    {
+        public AccountingEquipment()
+        {
+            InitializeComponent();
+
+            // Создаем контекст БД
+            using (var dataBase = new DeviceShopEntities())
+            {
+                // Отключаем прокси для чистых данных
+                dataBase.Configuration.ProxyCreationEnabled = false;
+
+                // Загружаем данные с явным указанием нужных полей
+                DataGrid.ItemsSource = dataBase.Details
+                    .Select(d => new  // Создаем анонимный тип с нужными полями
+                    {
+                        d.Id,
+                        d.Name,
+                        d.ArticleNumber,
+                        d.Price,
+                        // Добавьте другие нужные поля
+                        CategoryName = d.Category.Name, // Пример для связанной сущности
+                        SupplierName = d.Supplier.Name  // Пример для связанной сущности
+                    })
+                    .ToList();
+            }
         }
     }
-}
+}*/

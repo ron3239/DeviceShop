@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace DeviceShop.components.screen
@@ -20,6 +21,10 @@ namespace DeviceShop.components.screen
         private void AccountingEquipment(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AccountingEquipment());
+        }
+        private void Entrance(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Entrance());
         }
     }
 }

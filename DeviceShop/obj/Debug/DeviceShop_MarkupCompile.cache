@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\
+A:\project\wpf\DeviceShop\DeviceShop\obj\Debug\
 DeviceShop
 none
 false
 DEBUG;TRACE
-C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\App.xaml
-4-722805521
-21750853300
-192040577766
-18-197935519
-components\screen\AccountingEquipment.xaml;components\screen\Main.xaml;components\screen\makingOrder.xaml;MainWindow.xaml;
+A:\project\wpf\DeviceShop\DeviceShop\App.xaml
+5-1239025262
+2-1957146511
+20-1441442315
+18878895519
+components\screen\AccountingEquipment.xaml;components\screen\Entrance.xaml;components\screen\Main.xaml;components\screen\makingOrder.xaml;MainWindow.xaml;
 
-False
+True
 

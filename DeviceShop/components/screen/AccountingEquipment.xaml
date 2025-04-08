@@ -8,10 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AccountingEquipment">
 
-    <Grid >
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
@@ -21,12 +21,36 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition/>
-
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">Учет оборудования</TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"></TextBlock>
-        <DataGrid Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3" x:Name="DataGrid" AutoGenerateColumns="True">
 
+        <!-- Search Box -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Margin="0,0,10,0">Поиск по марке:</TextBlock>
+            <TextBox x:Name="SearchTextBox" Width="300" MaxLength="100" 
+                     TextChanged="SearchTextBox_TextChanged"/>
+            <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Foreground="Gray" FontStyle="Italic">
+                Используйте ? для любой последовательности и ! для одного символа
+            </TextBlock>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">Учет оборудования</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"></TextBlock>
+
+        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="3" x:Name="DataGrid" AutoGenerateColumns="False" Margin="10">
+            <DataGrid.Columns>
+                <!-- Основные свойства -->
+                <DataGridTextColumn Header="ID статьи" Binding="{Binding ArticleId}" Width="Auto"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="100"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="ID типа" Binding="{Binding TypeDetailsId}" Width="Auto"/>
+
+                <!-- Связанные свойства -->
+                <DataGridTextColumn Header="Артикул" Binding="{Binding ArticleName}" Width="150"/>
+                <DataGridTextColumn Header="ГОСТ" Binding="{Binding GostName}" Width="150"/>
+                <DataGridTextColumn Header="Тип детали" Binding="{Binding TypeDetailsName}" Width="150"/>
+                <DataGridTextColumn Header="Единица измерения" Binding="{Binding UnitName}" Width="150"/>
+            </DataGrid.Columns>
         </DataGrid>
 
         <Button Grid.Row="5" Grid.Column="2" Margin="5" Content="Добавить"/>

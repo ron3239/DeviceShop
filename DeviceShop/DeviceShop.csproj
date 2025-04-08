@@ -70,6 +70,9 @@
     <Compile Include="Article.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="components\screen\Entrance.xaml.cs">
+      <DependentUpon>Entrance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Details.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Page Include="components\screen\AccountingEquipment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="components\screen\Entrance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

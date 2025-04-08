@@ -1,52 +1,82 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace DeviceShop.components.screen
 {
-    /// <summary>
-    /// Логика взаимодействия для AccountingEquipment.xaml
-    /// </summary>
     public partial class AccountingEquipment : Page
     {
+        private List<dynamic> _allEquipment = new List<dynamic>();
+
         public AccountingEquipment()
         {
             InitializeComponent();
-            DeviceShopEntities dataBase = new DeviceShopEntities();
-            DataGrid.ItemsSource = dataBase.Details.ToList();
+            LoadEquipmentData();
         }
 
-    }
-
-}
-
-/*namespace DeviceShop.components.screen
-{
-    public partial class AccountingEquipment : Page
-    {
-        public AccountingEquipment()
+        private void LoadEquipmentData()
         {
-            InitializeComponent();
-
-            // Создаем контекст БД
-            using (var dataBase = new DeviceShopEntities())
+            try
             {
-                // Отключаем прокси для чистых данных
-                dataBase.Configuration.ProxyCreationEnabled = false;
-
-                // Загружаем данные с явным указанием нужных полей
-                DataGrid.ItemsSource = dataBase.Details
-                    .Select(d => new  // Создаем анонимный тип с нужными полями
+                DeviceShopEntities dataBase = new DeviceShopEntities();
+                _allEquipment = dataBase.Details
+                    .Select(d => new
                     {
-                        d.Id,
-                        d.Name,
-                        d.ArticleNumber,
+                        d.ArticleId,
+                        d.Name,          // Фильтрация будет по этому полю
+                        d.Count,
                         d.Price,
-                        // Добавьте другие нужные поля
-                        CategoryName = d.Category.Name, // Пример для связанной сущности
-                        SupplierName = d.Supplier.Name  // Пример для связанной сущности
+                        d.TypeDetailsId,
+                        ArticleNumber = d.Article.ArticleName,
+                        GostName = d.Gost.GostName,
+                        TypeDetailsName = d.TypeDetails.TypeDetailsName,
+                        UnitName = d.Unit.UnitName
                     })
                     .ToList();
+
+                DataGrid.ItemsSource = _allEquipment;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}");
             }
         }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchPattern = SearchTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchPattern))
+            {
+                DataGrid.ItemsSource = _allEquipment;
+                return;
+            }
+
+            try
+            {
+                string regexPattern = ConvertToRegexPattern(searchPattern);
+                var filteredItems = _allEquipment
+                    .Where(item => item.Name != null &&
+                                   Regex.IsMatch(item.Name.ToString(), regexPattern, RegexOptions.IgnoreCase))
+                    .ToList();
+
+                DataGrid.ItemsSource = filteredItems;
+            }
+            catch
+            {
+                DataGrid.ItemsSource = _allEquipment;
+            }
+        }
+
+        private string ConvertToRegexPattern(string searchPattern)
+        {
+            string pattern = Regex.Escape(searchPattern);
+            pattern = pattern.Replace(@"\?", ".*");  // ? заменяем на .*
+            pattern = pattern.Replace(@"\!", ".");   // ! заменяем на .
+            return "^" + pattern + "$";  // Точное совпадение с шаблоном
+        }
     }
-}*/
+}

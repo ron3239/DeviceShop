@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ef70b6c557234b0c8f93ffd8b229b051" Name="Diagram1" ZoomLevel="85">
+      <Diagram DiagramId="f6f413ed429d46508a8e88afb923ee18" Name="Diagram1">
         <EntityTypeShape EntityType="DeviceShopModel.Accessories" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DeviceShopModel.Article" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DeviceShopModel.Details" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DeviceShopModel.Gost" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeviceShopModel.sysdiagrams" Width="1.5" PointX="11.375" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeviceShopModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DeviceShopModel.TypeDetails" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DeviceShopModel.TypeMaterial" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DeviceShopModel.Unit" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
@@ -21,6 +21,9 @@
         <AssociationConnector Association="DeviceShopModel.FK_Details_TypeDetails" ManuallyRouted="false" />
         <AssociationConnector Association="DeviceShopModel.FK_Details_Unit" ManuallyRouted="false" />
         <AssociationConnector Association="DeviceShopModel.FK_Details_Unit1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DeviceShopModel.Contract" Width="1.5" PointX="8.375" PointY="1.375" />
+        <EntityTypeShape EntityType="DeviceShopModel.Entrance" Width="1.5" PointX="10.625" PointY="1" />
+        <AssociationConnector Association="DeviceShopModel.FK_Entrance_Contract" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

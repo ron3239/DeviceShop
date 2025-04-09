@@ -183,7 +183,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DeviceShopEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DeviceShopEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Accessories" EntityType="Self.Accessories" />
     <EntitySet Name="Article" EntityType="Self.Article" />
     <EntitySet Name="Details" EntityType="Self.Details" />

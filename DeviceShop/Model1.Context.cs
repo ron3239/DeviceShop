@@ -13,10 +13,10 @@ namespace DeviceShop
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DeviceShopEntities : DbContext
+    public partial class DeviceShopEntities1 : DbContext
     {
-        public DeviceShopEntities()
-            : base("name=DeviceShopEntities")
+        public DeviceShopEntities1()
+            : base("name=DeviceShopEntities1")
         {
         }
     
@@ -33,5 +33,7 @@ namespace DeviceShop
         public virtual DbSet<TypeDetails> TypeDetails { get; set; }
         public virtual DbSet<TypeMaterial> TypeMaterial { get; set; }
         public virtual DbSet<Unit> Unit { get; set; }
+        public virtual DbSet<Contract> Contract { get; set; }
+        public virtual DbSet<Entrance> Entrance { get; set; }
     }
 }

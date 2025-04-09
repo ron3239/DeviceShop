@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Linq;
+using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace DeviceShop.components.screen
         {
             try
             {
-                DeviceShopEntities dataBase = new DeviceShopEntities();
+                DeviceShopEntities1 dataBase = new DeviceShopEntities1();
                 _allEquipment = dataBase.Details
                     .Select(d => new
                     {
@@ -30,12 +31,12 @@ namespace DeviceShop.components.screen
                         d.Count,
                         d.Price,
                         d.TypeDetailsId,
-                        ArticleNumber = d.Article.ArticleName,
+                        ArticleName = d.Article.ArticleName,
                         GostName = d.Gost.GostName,
                         TypeDetailsName = d.TypeDetails.TypeDetailsName,
                         UnitName = d.Unit.UnitName
-                    })
-                    .ToList();
+                    }).ToList<dynamic>();
+                    
 
                 DataGrid.ItemsSource = _allEquipment;
             }

@@ -56,3 +56,5 @@ A:\project\wpf\DeviceShop\DeviceShop\obj\Debug\DeviceShop.exe
 A:\project\wpf\DeviceShop\DeviceShop\obj\Debug\DeviceShop.pdb
 A:\project\wpf\DeviceShop\DeviceShop\obj\Debug\components\screen\Entrance.baml
 A:\project\wpf\DeviceShop\DeviceShop\obj\Debug\components\screen\Entrance.g.cs
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\Entrance.baml
+C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\components\screen\Entrance.g.cs

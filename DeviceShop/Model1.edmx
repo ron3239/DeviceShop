@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DeviceShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DeviceShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accessories">
           <Key>
             <PropertyRef Name="AccessoriesId" />
@@ -25,6 +25,14 @@
           <Property Name="ArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ArticleName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractId" />
+          </Key>
+          <Property Name="ContractId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateContract" Type="date" />
+          <Property Name="NameProvider" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Details">
           <Key>
             <PropertyRef Name="DetailsId" />
@@ -37,6 +45,18 @@
           <Property Name="TypeDetailsId" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="6" Scale="2" Nullable="false" />
           <Property Name="GostId" Type="int" />
+        </EntityType>
+        <EntityType Name="Entrance">
+          <Key>
+            <PropertyRef Name="EntranceId" />
+          </Key>
+          <Property Name="EntranceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="ContractId" Type="int" />
+          <Property Name="NameItem" Type="nvarchar" MaxLength="100" />
+          <Property Name="Count" Type="int" />
+          <Property Name="CostOne" Type="int" />
+          <Property Name="CostTotal" Type="int" />
         </EntityType>
         <EntityType Name="Gost">
           <Key>
@@ -172,10 +192,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Entrance_Contract">
+          <End Role="Contract" Type="Self.Contract" Multiplicity="0..1" />
+          <End Role="Entrance" Type="Self.Entrance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="ContractId" />
+            </Principal>
+            <Dependent Role="Entrance">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище DeviceShopModelContainer">
           <EntitySet Name="Accessories" EntityType="Self.Accessories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Details" EntityType="Self.Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entrance" EntityType="Self.Entrance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gost" EntityType="Self.Gost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeDetails" EntityType="Self.TypeDetails" Schema="dbo" store:Type="Tables" />
@@ -213,9 +247,12 @@
             <End Role="Unit" EntitySet="Unit" />
             <End Role="Details" EntitySet="Details" />
           </AssociationSet>
+          <AssociationSet Name="FK_Entrance_Contract" Association="Self.FK_Entrance_Contract">
+            <End Role="Contract" EntitySet="Contract" />
+            <End Role="Entrance" EntitySet="Entrance" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DeviceShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -402,7 +439,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DeviceShopEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DeviceShopEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accessories" EntityType="Self.Accessories" />
           <EntitySet Name="Article" EntityType="Self.Article" />
           <EntitySet Name="Details" EntityType="Self.Details" />
@@ -443,13 +480,53 @@
             <End Role="Unit" EntitySet="Unit" />
             <End Role="Details" EntitySet="Details" />
           </AssociationSet>
+          <EntitySet Name="Contract" EntityType="DeviceShopModel.Contract" />
+          <EntitySet Name="Entrance" EntityType="DeviceShopModel.Entrance" />
+          <AssociationSet Name="FK_Entrance_Contract" Association="DeviceShopModel.FK_Entrance_Contract">
+            <End Role="Contract" EntitySet="Contract" />
+            <End Role="Entrance" EntitySet="Entrance" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractId" />
+          </Key>
+          <Property Name="ContractId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateContract" Type="DateTime" Precision="0" />
+          <Property Name="NameProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Entrance" Relationship="DeviceShopModel.FK_Entrance_Contract" FromRole="Contract" ToRole="Entrance" />
+        </EntityType>
+        <EntityType Name="Entrance">
+          <Key>
+            <PropertyRef Name="EntranceId" />
+          </Key>
+          <Property Name="EntranceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="ContractId" Type="Int32" />
+          <Property Name="NameItem" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="CostOne" Type="Int32" />
+          <Property Name="CostTotal" Type="Int32" />
+          <NavigationProperty Name="Contract" Relationship="DeviceShopModel.FK_Entrance_Contract" FromRole="Entrance" ToRole="Contract" />
+        </EntityType>
+        <Association Name="FK_Entrance_Contract">
+          <End Type="DeviceShopModel.Contract" Role="Contract" Multiplicity="0..1" />
+          <End Type="DeviceShopModel.Entrance" Role="Entrance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="ContractId" />
+            </Principal>
+            <Dependent Role="Entrance">
+              <PropertyRef Name="ContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище DeviceShopModelContainer" CdmEntityContainer="DeviceShopEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DeviceShopModelContainer" CdmEntityContainer="DeviceShopEntities1">
           <EntitySetMapping Name="Accessories">
             <EntityTypeMapping TypeName="DeviceShopModel.Accessories">
               <MappingFragment StoreEntitySet="Accessories">
@@ -526,6 +603,28 @@
               <MappingFragment StoreEntitySet="Unit">
                 <ScalarProperty Name="UnitId" ColumnName="UnitId" />
                 <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contract">
+            <EntityTypeMapping TypeName="DeviceShopModel.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="NameProvider" ColumnName="NameProvider" />
+                <ScalarProperty Name="DateContract" ColumnName="DateContract" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entrance">
+            <EntityTypeMapping TypeName="DeviceShopModel.Entrance">
+              <MappingFragment StoreEntitySet="Entrance">
+                <ScalarProperty Name="CostTotal" ColumnName="CostTotal" />
+                <ScalarProperty Name="CostOne" ColumnName="CostOne" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="NameItem" ColumnName="NameItem" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EntranceId" ColumnName="EntranceId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

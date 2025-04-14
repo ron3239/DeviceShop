@@ -20,6 +20,14 @@
     <Property Name="ArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ArticleName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="ContractId" />
+    </Key>
+    <Property Name="ContractId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateContract" Type="date" />
+    <Property Name="NameProvider" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Details">
     <Key>
       <PropertyRef Name="DetailsId" />
@@ -33,12 +41,107 @@
     <Property Name="Price" Type="decimal" Precision="6" Scale="2" Nullable="false" />
     <Property Name="GostId" Type="int" />
   </EntityType>
+  <EntityType Name="Entrance">
+    <Key>
+      <PropertyRef Name="EntranceId" />
+    </Key>
+    <Property Name="EntranceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" />
+    <Property Name="ContractId" Type="int" />
+    <Property Name="NameItem" Type="nvarchar" MaxLength="100" />
+    <Property Name="Count" Type="int" />
+    <Property Name="CostOne" Type="int" />
+    <Property Name="CostTotal" Type="int" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="InstallationDate" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="EquipmentFailure">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EquipmentId" Type="int" Nullable="false" />
+    <Property Name="FailureReasonId" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ReportedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="FixedBy" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="FailureReason">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
   <EntityType Name="Gost">
     <Key>
       <PropertyRef Name="GostId" />
     </Key>
     <Property Name="GostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="GostName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductCharacteristics">
+    <Key>
+      <PropertyRef Name="CharacteristicId" />
+    </Key>
+    <Property Name="CharacteristicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpecificationId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="UnitId" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="SpecificationComponents">
+    <Key>
+      <PropertyRef Name="ComponentId" />
+    </Key>
+    <Property Name="ComponentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpecificationId" Type="int" Nullable="false" />
+    <Property Name="AccessoriesId" Type="int" />
+    <Property Name="DetailsId" Type="int" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpecificationOperations">
+    <Key>
+      <PropertyRef Name="OperationId" />
+    </Key>
+    <Property Name="OperationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpecificationId" Type="int" Nullable="false" />
+    <Property Name="EquipmentId" Type="int" Nullable="false" />
+    <Property Name="SequenceNumber" Type="int" Nullable="false" />
+    <Property Name="Duration" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Specifications">
+    <Key>
+      <PropertyRef Name="SpecificationId" />
+    </Key>
+    <Property Name="SpecificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="LastModified" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -155,23 +258,184 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Details_Unit1">
+  <Association Name="FK_Entrance_Contract">
+    <End Role="Contract" Type="Self.Contract" Multiplicity="0..1" />
+    <End Role="Entrance" Type="Self.Entrance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contract">
+        <PropertyRef Name="ContractId" />
+      </Principal>
+      <Dependent Role="Entrance">
+        <PropertyRef Name="ContractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EquipmentFailure_Equipment">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="EquipmentFailure" Type="Self.EquipmentFailure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentFailure">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EquipmentFailure_FailureReason">
+    <End Role="FailureReason" Type="Self.FailureReason" Multiplicity="1" />
+    <End Role="EquipmentFailure" Type="Self.EquipmentFailure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FailureReason">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentFailure">
+        <PropertyRef Name="FailureReasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCharacteristics_Specifications">
+    <End Role="Specifications" Type="Self.Specifications" Multiplicity="1" />
+    <End Role="ProductCharacteristics" Type="Self.ProductCharacteristics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specifications">
+        <PropertyRef Name="SpecificationId" />
+      </Principal>
+      <Dependent Role="ProductCharacteristics">
+        <PropertyRef Name="SpecificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Unit">
     <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
-    <End Role="Details" Type="Self.Details" Multiplicity="*" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Unit">
         <PropertyRef Name="UnitId" />
       </Principal>
-      <Dependent Role="Details">
+      <Dependent Role="Products">
         <PropertyRef Name="UnitId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SpecificationComponents_Accessories">
+    <End Role="Accessories" Type="Self.Accessories" Multiplicity="0..1" />
+    <End Role="SpecificationComponents" Type="Self.SpecificationComponents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accessories">
+        <PropertyRef Name="AccessoriesId" />
+      </Principal>
+      <Dependent Role="SpecificationComponents">
+        <PropertyRef Name="AccessoriesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpecificationComponents_Details">
+    <End Role="Details" Type="Self.Details" Multiplicity="0..1" />
+    <End Role="SpecificationComponents" Type="Self.SpecificationComponents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Details">
+        <PropertyRef Name="DetailsId" />
+      </Principal>
+      <Dependent Role="SpecificationComponents">
+        <PropertyRef Name="DetailsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpecificationComponents_Specifications">
+    <End Role="Specifications" Type="Self.Specifications" Multiplicity="1" />
+    <End Role="SpecificationComponents" Type="Self.SpecificationComponents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specifications">
+        <PropertyRef Name="SpecificationId" />
+      </Principal>
+      <Dependent Role="SpecificationComponents">
+        <PropertyRef Name="SpecificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpecificationOperations_Equipment">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="SpecificationOperations" Type="Self.SpecificationOperations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SpecificationOperations">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpecificationOperations_Specifications">
+    <End Role="Specifications" Type="Self.Specifications" Multiplicity="1" />
+    <End Role="SpecificationOperations" Type="Self.SpecificationOperations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specifications">
+        <PropertyRef Name="SpecificationId" />
+      </Principal>
+      <Dependent Role="SpecificationOperations">
+        <PropertyRef Name="SpecificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Specifications_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Specifications" Type="Self.Specifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Specifications">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="Хранилище DeviceShopModelContainer">
     <EntitySet Name="Accessories" EntityType="Self.Accessories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Details" EntityType="Self.Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entrance" EntityType="Self.Entrance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EquipmentFailure" EntityType="Self.EquipmentFailure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FailureReason" EntityType="Self.FailureReason" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gost" EntityType="Self.Gost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCharacteristics" EntityType="Self.ProductCharacteristics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpecificationComponents" EntityType="Self.SpecificationComponents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpecificationOperations" EntityType="Self.SpecificationOperations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Specifications" EntityType="Self.Specifications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TypeDetails" EntityType="Self.TypeDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TypeMaterial" EntityType="Self.TypeMaterial" Schema="dbo" store:Type="Tables" />
@@ -204,9 +468,49 @@
       <End Role="Unit" EntitySet="Unit" />
       <End Role="Details" EntitySet="Details" />
     </AssociationSet>
-    <AssociationSet Name="FK_Details_Unit1" Association="Self.FK_Details_Unit1">
+    <AssociationSet Name="FK_Entrance_Contract" Association="Self.FK_Entrance_Contract">
+      <End Role="Contract" EntitySet="Contract" />
+      <End Role="Entrance" EntitySet="Entrance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EquipmentFailure_Equipment" Association="Self.FK_EquipmentFailure_Equipment">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="EquipmentFailure" EntitySet="EquipmentFailure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EquipmentFailure_FailureReason" Association="Self.FK_EquipmentFailure_FailureReason">
+      <End Role="FailureReason" EntitySet="FailureReason" />
+      <End Role="EquipmentFailure" EntitySet="EquipmentFailure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCharacteristics_Specifications" Association="Self.FK_ProductCharacteristics_Specifications">
+      <End Role="Specifications" EntitySet="Specifications" />
+      <End Role="ProductCharacteristics" EntitySet="ProductCharacteristics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Unit" Association="Self.FK_Products_Unit">
       <End Role="Unit" EntitySet="Unit" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpecificationComponents_Accessories" Association="Self.FK_SpecificationComponents_Accessories">
+      <End Role="Accessories" EntitySet="Accessories" />
+      <End Role="SpecificationComponents" EntitySet="SpecificationComponents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpecificationComponents_Details" Association="Self.FK_SpecificationComponents_Details">
       <End Role="Details" EntitySet="Details" />
+      <End Role="SpecificationComponents" EntitySet="SpecificationComponents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpecificationComponents_Specifications" Association="Self.FK_SpecificationComponents_Specifications">
+      <End Role="Specifications" EntitySet="Specifications" />
+      <End Role="SpecificationComponents" EntitySet="SpecificationComponents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpecificationOperations_Equipment" Association="Self.FK_SpecificationOperations_Equipment">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="SpecificationOperations" EntitySet="SpecificationOperations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpecificationOperations_Specifications" Association="Self.FK_SpecificationOperations_Specifications">
+      <End Role="Specifications" EntitySet="Specifications" />
+      <End Role="SpecificationOperations" EntitySet="SpecificationOperations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Specifications_Products" Association="Self.FK_Specifications_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Specifications" EntitySet="Specifications" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

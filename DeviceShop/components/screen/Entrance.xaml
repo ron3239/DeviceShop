@@ -31,22 +31,16 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Номер:" Margin="0,0,5,5"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DocumentNumber}" Margin="0,0,0,5"/>    //Сначала номер поставки, потом сегодняшняя дата(автозаполнение), айди договора изв торой таблицы, Выбор оборудования или компдектующего кторое привещзлив поставке, кол-во, цена за штуку, и автоматически рассчитываеться общая цена. 
+                <TextBox x:Name="DocumentNumber" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,0,5"/>
 
                 <TextBlock Grid.Row="0" Grid.Column="2" Text="Дата:" Margin="5,0,5,5"/>
-                <DatePicker Grid.Row="0" Grid.Column="3" SelectedDate="{Binding DocumentDate}" IsEnabled="False" Margin="0,0,0,5"/>
+                <DatePicker x:Name="DocumentDate" Grid.Row="0" Grid.Column="3" IsEnabled="False" Margin="0,0,0,5"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Поставщик:" Margin="0,0,5,0"/>
-                <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Suppliers}" 
-                          DisplayMemberPath="Name"
-                          SelectedValuePath="Id"
-                          SelectedValue="{Binding SelectedSupplierId}" Margin="0,0,0,0"/>
+                <TextBox x:Name="Suppliers" Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" IsEnabled="False"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Договор:" Margin="5,0,5,0"/>
-                <ComboBox Grid.Row="1" Grid.Column="3" ItemsSource="{Binding Contracts}" 
-                          DisplayMemberPath="DisplayInfo"
-                          SelectedValuePath="Id"
-                          SelectedValue="{Binding SelectedContractId}" Margin="0,0,0,0"/>
+                <ComboBox x:Name="ComboBoxDogovor" Grid.Row="1" Grid.Column="3" Margin="0,0,0,0"/>
             </Grid>
         </GroupBox>
 
@@ -60,41 +54,32 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Button Content="Добавить" Command="{Binding AddItemCommand}" Margin="0,0,5,0"/>
-                    <Button Content="Удалить" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding SelectedItem}"/>
+                    <Button Content="Добавить" Click="ShowSelectionWindow" Margin="0,0,5,0"/>
+                    <Button Content="Удалить" Click="DeleteSelectedItem"/>
                 </StackPanel>
 
-                <DataGrid Grid.Row="1" ItemsSource="{Binding Items}" AutoGenerateColumns="False"
-                          SelectedItem="{Binding SelectedItem}" CanUserAddRows="False">
+                <DataGrid x:Name="ItemsDataGrid" Grid.Row="1" AutoGenerateColumns="False"
+                         CanUserAddRows="False" CellEditEnding="ItemsDataGrid_CellEditEnding">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Наименование" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ComboBox ItemsSource="{Binding DataContext.AvailableComponents, RelativeSource={RelativeSource AncestorType=Window}}"
-                                              DisplayMemberPath="Name"
-                                              SelectedValuePath="Id"
-                                              SelectedValue="{Binding ComponentId}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Количество" Binding="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" Width="Auto"/>
                         <DataGridTextColumn Header="Ед. изм." Binding="{Binding Unit}" Width="Auto" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:N2}}" Width="Auto"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:N2}}" Width="Auto" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Сумма" Binding="{Binding TotalPrice, StringFormat={}{0:N2}}" Width="Auto" IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Итого:" FontWeight="Bold" Margin="0,0,5,0"/>
-                    <TextBlock Text="{Binding TotalAmount, StringFormat={}{0:N2}}" FontWeight="Bold" Width="100" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="TotalAmountText" FontWeight="Bold" Width="100" HorizontalAlignment="Right" Text="0.00"/>
                 </StackPanel>
             </Grid>
         </GroupBox>
 
         <!-- Кнопки сохранения/отмены -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Сохранить" Width="100" Margin="0,0,10,0" Command="{Binding SaveCommand}"/>
-            <Button Content="Отмена" Width="100" Command="{Binding CancelCommand}"/>
+            <Button Content="Сохранить" Width="100" Margin="0,0,10,0"/>
+            <Button Content="Отмена" Width="100"/>
         </StackPanel>
     </Grid>
 </Page>

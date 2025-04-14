@@ -1,5 +1,6 @@
 ﻿using DeviceShop.components.screen;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace DeviceShop
 {
@@ -12,6 +13,10 @@ namespace DeviceShop
         {
             InitializeComponent();
             MainFrame.Navigate(new Main());
+        }
+        private void BackClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.GoBack();
         }
     }
 }

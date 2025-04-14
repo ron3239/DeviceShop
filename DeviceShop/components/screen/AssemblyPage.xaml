@@ -1,0 +1,80 @@
+﻿<Page x:Class="DeviceShop.components.screen.AssemblyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DeviceShop.components.screen"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Entrance">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка документа -->
+        <GroupBox Grid.Row="0" Header="Документ">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Номер:" Margin="0,0,5,5"/>
+                <TextBox x:Name="DocumentNumber" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,0,5"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Дата:" Margin="5,0,5,5"/>
+                <DatePicker x:Name="DocumentDate" Grid.Row="0" Grid.Column="3" IsEnabled="False" Margin="0,0,0,5"/>
+
+                
+            </Grid>
+        </GroupBox>
+
+        <!-- Позиции документа -->
+        <GroupBox Grid.Row="1" Header="Позиции" Margin="0,10,0,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Button Content="Добавить" Click="ShowSelectionWindow" Margin="0,0,5,0"/>
+                    <Button Content="Удалить" Click="DeleteSelectedItem"/>
+                </StackPanel>
+
+                <DataGrid x:Name="ItemsDataGrid" Grid.Row="1" AutoGenerateColumns="False"
+                         CanUserAddRows="False" CellEditEnding="ItemsDataGrid_CellEditEnding">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Количество" Binding="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" Width="Auto"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:N2}}" Width="Auto" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Сумма" Binding="{Binding TotalPrice, StringFormat={}{0:N2}}" Width="Auto" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="Итого:" FontWeight="Bold" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="TotalAmountText" FontWeight="Bold" Width="100" HorizontalAlignment="Right" Text="0.00"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <!-- Кнопки сохранения/отмены -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Сохранить" Width="100" Margin="0,0,10,0"/>
+            <Button Content="Отмена" Width="100"/>
+        </StackPanel>
+    </Grid>
+</Page>

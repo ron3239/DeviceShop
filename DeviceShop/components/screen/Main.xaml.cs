@@ -14,6 +14,7 @@ namespace DeviceShop.components.screen
             InitializeComponent();
         }
 
+
         private void ExiteClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -25,6 +26,12 @@ namespace DeviceShop.components.screen
         private void Entrance(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Entrance());
+        }
+        private void AssemblyProducts(object sender, RoutedEventArgs e) { 
+            NavigationService.Navigate(new AssemblyPage());
+}
+        private void EquipmentFailureView(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new EquipmentFailureView());
         }
     }
 }

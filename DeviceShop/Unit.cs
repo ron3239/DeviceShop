@@ -20,6 +20,7 @@ namespace DeviceShop
             this.Accessories = new HashSet<Accessories>();
             this.Details = new HashSet<Details>();
             this.Details1 = new HashSet<Details>();
+            this.Products = new HashSet<Products>();
         }
     
         public int UnitId { get; set; }
@@ -31,5 +32,7 @@ namespace DeviceShop
         public virtual ICollection<Details> Details { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Details> Details1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Products> Products { get; set; }
     }
 }

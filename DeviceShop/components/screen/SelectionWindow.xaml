@@ -1,0 +1,46 @@
+﻿<Window x:Class="DeviceShop.components.screen.SelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Выбор компонента" Height="450" Width="600"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Accessories">
+                <DataGrid x:Name="AccessoriesList" 
+                          AutoGenerateColumns="False" 
+                          SelectionMode="Single"
+                          IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="Ед. изм." Binding="{Binding Unit}" Width="Auto"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:N2}}" Width="Auto"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="Details">
+                <DataGrid x:Name="DetailsList" 
+                          AutoGenerateColumns="False" 
+                          SelectionMode="Single"
+                          IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="Ед. изм." Binding="{Binding Unit}" Width="Auto"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:N2}}" Width="Auto"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button Content="Выбрать" Width="100" Margin="0,0,10,0" Click="SelectButton_Click"/>
+            <Button Content="Отмена" Width="100" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

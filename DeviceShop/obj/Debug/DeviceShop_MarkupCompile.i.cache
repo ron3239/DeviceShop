@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\obj\Debug\
+A:\project\wpf\ron3239\DeviceShop\DeviceShop\obj\Debug\
 DeviceShop
 none
 false
 DEBUG;TRACE
-C:\Users\zhuma\Desktop\DeviceShop\DeviceShop\App.xaml
-51453244918
-21750853300
-23-745962984
-18-197935519
-components\screen\AccountingEquipment.xaml;components\screen\Entrance.xaml;components\screen\Main.xaml;components\screen\makingOrder.xaml;MainWindow.xaml;
+A:\project\wpf\ron3239\DeviceShop\DeviceShop\App.xaml
+9-1922005292
+2-1957146511
+392082491306
+481076752189
+components\screen\AccountingEquipment.xaml;components\screen\AssemblyPage.xaml;components\screen\Entrance.xaml;components\screen\EquipmentFailureView.xaml;components\screen\Main.xaml;components\screen\makingOrder.xaml;components\screen\SelectionWindow.xaml;components\screen\SpecificationView.xaml;MainWindow.xaml;
 
-False
+True
 

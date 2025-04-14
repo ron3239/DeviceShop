@@ -1,0 +1,122 @@
+﻿<Page x:Class="DeviceShop.components.screen.SpecificationView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DeviceShop.components.screen"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="SpecificationView">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок и информация об изделии -->
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Спецификация изделия" FontSize="18" FontWeight="Bold"/>
+            <TextBlock x:Name="txtProductInfo" Margin="0,5" FontSize="14"/>
+        </StackPanel>
+
+        <!-- Табы для разных разделов спецификации -->
+        <TabControl Grid.Row="1" Margin="0,10">
+            <TabItem Header="Характеристики">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5">
+                        <Button x:Name="btnAddCharacteristic" Content="Добавить" Click="BtnAddCharacteristic_Click"/>
+                        <Button x:Name="btnRemoveCharacteristic" Content="Удалить" Margin="5,0" Click="BtnRemoveCharacteristic_Click"/>
+                    </StackPanel>
+                    
+                    <DataGrid Grid.Row="1" x:Name="dgCharacteristics" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Значение" Binding="{Binding Value}" Width="*"/>
+                            <DataGridTextColumn Header="Единица измерения" Binding="{Binding Unit}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Комплектующие">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5">
+                        <Button x:Name="btnAddComponent" Content="Добавить" Click="BtnAddComponent_Click"/>
+                        <Button x:Name="btnRemoveComponent" Content="Удалить" Margin="5,0" Click="BtnRemoveComponent_Click"/>
+                    </StackPanel>
+                    
+                    <DataGrid Grid.Row="1" x:Name="dgComponents" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="100"/>
+                            <DataGridTextColumn Header="Артикул" Binding="{Binding ArticleNumber}" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Детали">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5">
+                        <Button x:Name="btnAddPart" Content="Добавить" Click="BtnAddPart_Click"/>
+                        <Button x:Name="btnRemovePart" Content="Удалить" Margin="5,0" Click="BtnRemovePart_Click"/>
+                    </StackPanel>
+                    
+                    <DataGrid Grid.Row="1" x:Name="dgParts" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="100"/>
+                            <DataGridTextColumn Header="ГОСТ" Binding="{Binding Gost}" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Операции">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5">
+                        <Button x:Name="btnAddOperation" Content="Добавить" Click="BtnAddOperation_Click"/>
+                        <Button x:Name="btnRemoveOperation" Content="Удалить" Margin="5,0" Click="BtnRemoveOperation_Click"/>
+                    </StackPanel>
+                    
+                    <DataGrid Grid.Row="1" x:Name="dgOperations" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Оборудование" Binding="{Binding Equipment}" Width="*"/>
+                            <DataGridTextColumn Header="Время выполнения" Binding="{Binding Duration}" Width="150"/>
+                            <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="2*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!-- Кнопки сохранения/отмены -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10">
+            <Button x:Name="btnSave" Content="Сохранить" Width="100" Margin="0,0,10,0" Click="BtnSave_Click"/>
+            <Button x:Name="btnCancel" Content="Отмена" Width="100" Click="BtnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

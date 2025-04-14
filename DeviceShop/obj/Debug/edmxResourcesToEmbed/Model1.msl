@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище DeviceShopModelContainer" CdmEntityContainer="DeviceShopEntities1">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DeviceShopModelContainer" CdmEntityContainer="DeviceShopEntities2">
     <EntitySetMapping Name="Accessories">
       <EntityTypeMapping TypeName="DeviceShopModel.Accessories">
         <MappingFragment StoreEntitySet="Accessories">
@@ -23,6 +23,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Contract">
+      <EntityTypeMapping TypeName="DeviceShopModel.Contract">
+        <MappingFragment StoreEntitySet="Contract">
+          <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+          <ScalarProperty Name="DateContract" ColumnName="DateContract" />
+          <ScalarProperty Name="NameProvider" ColumnName="NameProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Details">
       <EntityTypeMapping TypeName="DeviceShopModel.Details">
         <MappingFragment StoreEntitySet="Details">
@@ -37,22 +46,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Entrance">
+      <EntityTypeMapping TypeName="DeviceShopModel.Entrance">
+        <MappingFragment StoreEntitySet="Entrance">
+          <ScalarProperty Name="EntranceId" ColumnName="EntranceId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+          <ScalarProperty Name="NameItem" ColumnName="NameItem" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="CostOne" ColumnName="CostOne" />
+          <ScalarProperty Name="CostTotal" ColumnName="CostTotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Gost">
       <EntityTypeMapping TypeName="DeviceShopModel.Gost">
         <MappingFragment StoreEntitySet="Gost">
           <ScalarProperty Name="GostId" ColumnName="GostId" />
           <ScalarProperty Name="GostName" ColumnName="GostName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="DeviceShopModel.sysdiagrams">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -77,6 +88,132 @@
         <MappingFragment StoreEntitySet="Unit">
           <ScalarProperty Name="UnitId" ColumnName="UnitId" />
           <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DeviceShopModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipment">
+      <EntityTypeMapping TypeName="DeviceShopModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="InstallationDate" ColumnName="InstallationDate" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipmentFailure">
+      <EntityTypeMapping TypeName="DeviceShopModel.EquipmentFailure">
+        <MappingFragment StoreEntitySet="EquipmentFailure">
+          <ScalarProperty Name="FixedBy" ColumnName="FixedBy" />
+          <ScalarProperty Name="ReportedBy" ColumnName="ReportedBy" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="FailureReasonId" ColumnName="FailureReasonId" />
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FailureReason">
+      <EntityTypeMapping TypeName="DeviceShopModel.FailureReason">
+        <MappingFragment StoreEntitySet="FailureReason">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="DeviceShopModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specifications">
+      <EntityTypeMapping TypeName="DeviceShopModel.Specifications">
+        <MappingFragment StoreEntitySet="Specifications">
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="SpecificationId" ColumnName="SpecificationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище DeviceShopModel.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище DeviceShopModel.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище DeviceShopModel.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище DeviceShopModel.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DeviceShopModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище DeviceShopModel.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DeviceShopModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище DeviceShopModel.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище DeviceShopModel.sp_upgraddiagrams" />
+    <EntitySetMapping Name="ProductCharacteristics">
+      <EntityTypeMapping TypeName="DeviceShopModel.ProductCharacteristics">
+        <MappingFragment StoreEntitySet="ProductCharacteristics">
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SpecificationId" ColumnName="SpecificationId" />
+          <ScalarProperty Name="CharacteristicId" ColumnName="CharacteristicId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpecificationComponents">
+      <EntityTypeMapping TypeName="DeviceShopModel.SpecificationComponents">
+        <MappingFragment StoreEntitySet="SpecificationComponents">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="DetailsId" ColumnName="DetailsId" />
+          <ScalarProperty Name="AccessoriesId" ColumnName="AccessoriesId" />
+          <ScalarProperty Name="SpecificationId" ColumnName="SpecificationId" />
+          <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpecificationOperations">
+      <EntityTypeMapping TypeName="DeviceShopModel.SpecificationOperations">
+        <MappingFragment StoreEntitySet="SpecificationOperations">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+          <ScalarProperty Name="SpecificationId" ColumnName="SpecificationId" />
+          <ScalarProperty Name="OperationId" ColumnName="OperationId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

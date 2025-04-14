@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace DeviceShop.components.screen
 {
@@ -22,7 +23,7 @@ namespace DeviceShop.components.screen
         {
             try
             {
-                DeviceShopEntities1 dataBase = new DeviceShopEntities1();
+                DeviceShopEntities2 dataBase = new DeviceShopEntities2();
                 _allEquipment = dataBase.Details
                     .Select(d => new
                     {
@@ -78,6 +79,17 @@ namespace DeviceShop.components.screen
             pattern = pattern.Replace(@"\?", ".*");  // ? заменяем на .*
             pattern = pattern.Replace(@"\!", ".");   // ! заменяем на .
             return "^" + pattern + "$";  // Точное совпадение с шаблоном
+        }
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (DataGrid.SelectedItem == null) return;
+
+            dynamic selected = DataGrid.SelectedItem;
+            int productId = selected.ArticleId;
+
+            // Переход к спецификации изделия
+            var specView = new SpecificationView(productId);
+            NavigationService.Navigate(specView);
         }
     }
 }

@@ -36,7 +36,7 @@
         <TextBlock Grid.Row="1" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">Учет оборудования</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"></TextBlock>
 
-        <DataGrid Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="3" x:Name="DataGrid" AutoGenerateColumns="False" Margin="10">
+        <DataGrid MouseDoubleClick="DataGrid_MouseDoubleClick" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="3" x:Name="DataGrid" AutoGenerateColumns="False" Margin="10">
             <DataGrid.Columns>
                 <!-- Основные свойства -->
                 <DataGridTextColumn Header="ID статьи" Binding="{Binding ArticleId}" Width="Auto"/>

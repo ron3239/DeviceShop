@@ -15,6 +15,7 @@
     <NavigationProperty Name="Article" Relationship="Self.FK_Accessories_Article" FromRole="Accessories" ToRole="Article" />
     <NavigationProperty Name="TypeMaterial" Relationship="Self.FK_Accessories_TypeMaterial" FromRole="Accessories" ToRole="TypeMaterial" />
     <NavigationProperty Name="Unit" Relationship="Self.FK_Accessories_Unit" FromRole="Accessories" ToRole="Unit" />
+    <NavigationProperty Name="SpecificationComponents" Relationship="DeviceShopModel.FK_SpecificationComponents_Accessories" FromRole="Accessories" ToRole="SpecificationComponents" />
   </EntityType>
   <EntityType Name="Article">
     <Key>
@@ -24,6 +25,15 @@
     <Property Name="ArticleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Accessories" Relationship="Self.FK_Accessories_Article" FromRole="Article" ToRole="Accessories" />
     <NavigationProperty Name="Details" Relationship="Self.FK_Details_Article" FromRole="Article" ToRole="Details" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="ContractId" />
+    </Key>
+    <Property Name="ContractId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateContract" Type="DateTime" Precision="0" />
+    <Property Name="NameProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Entrance" Relationship="Self.FK_Entrance_Contract" FromRole="Contract" ToRole="Entrance" />
   </EntityType>
   <EntityType Name="Details">
     <Key>
@@ -42,6 +52,20 @@
     <NavigationProperty Name="TypeDetails" Relationship="Self.FK_Details_TypeDetails" FromRole="Details" ToRole="TypeDetails" />
     <NavigationProperty Name="Unit" Relationship="Self.FK_Details_Unit" FromRole="Details" ToRole="Unit" />
     <NavigationProperty Name="Unit1" Relationship="Self.FK_Details_Unit1" FromRole="Details" ToRole="Unit" />
+    <NavigationProperty Name="SpecificationComponents" Relationship="DeviceShopModel.FK_SpecificationComponents_Details" FromRole="Details" ToRole="SpecificationComponents" />
+  </EntityType>
+  <EntityType Name="Entrance">
+    <Key>
+      <PropertyRef Name="EntranceId" />
+    </Key>
+    <Property Name="EntranceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="ContractId" Type="Int32" />
+    <Property Name="NameItem" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="CostOne" Type="Int32" />
+    <Property Name="CostTotal" Type="Int32" />
+    <NavigationProperty Name="Contract" Relationship="Self.FK_Entrance_Contract" FromRole="Entrance" ToRole="Contract" />
   </EntityType>
   <EntityType Name="Gost">
     <Key>
@@ -50,16 +74,6 @@
     <Property Name="GostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="GostName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Details" Relationship="Self.FK_Details_Gost" FromRole="Gost" ToRole="Details" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TypeDetails">
     <Key>
@@ -86,6 +100,7 @@
     <NavigationProperty Name="Accessories" Relationship="Self.FK_Accessories_Unit" FromRole="Unit" ToRole="Accessories" />
     <NavigationProperty Name="Details" Relationship="Self.FK_Details_Unit" FromRole="Unit" ToRole="Details" />
     <NavigationProperty Name="Details1" Relationship="Self.FK_Details_Unit1" FromRole="Unit" ToRole="Details" />
+    <NavigationProperty Name="Products" Relationship="DeviceShopModel.FK_Products_Unit" FromRole="Unit" ToRole="Products" />
   </EntityType>
   <Association Name="FK_Accessories_Article">
     <End Role="Article" Type="Self.Article" Multiplicity="1" />
@@ -132,6 +147,18 @@
       </Principal>
       <Dependent Role="Details">
         <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entrance_Contract">
+    <End Role="Contract" Type="Self.Contract" Multiplicity="0..1" />
+    <End Role="Entrance" Type="Self.Entrance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contract">
+        <PropertyRef Name="ContractId" />
+      </Principal>
+      <Dependent Role="Entrance">
+        <PropertyRef Name="ContractId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -183,12 +210,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DeviceShopEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DeviceShopEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Accessories" EntityType="Self.Accessories" />
     <EntitySet Name="Article" EntityType="Self.Article" />
+    <EntitySet Name="Contract" EntityType="Self.Contract" />
     <EntitySet Name="Details" EntityType="Self.Details" />
+    <EntitySet Name="Entrance" EntityType="Self.Entrance" />
     <EntitySet Name="Gost" EntityType="Self.Gost" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="TypeDetails" EntityType="Self.TypeDetails" />
     <EntitySet Name="TypeMaterial" EntityType="Self.TypeMaterial" />
     <EntitySet Name="Unit" EntityType="Self.Unit" />
@@ -208,6 +236,10 @@
       <End Role="Article" EntitySet="Article" />
       <End Role="Details" EntitySet="Details" />
     </AssociationSet>
+    <AssociationSet Name="FK_Entrance_Contract" Association="Self.FK_Entrance_Contract">
+      <End Role="Contract" EntitySet="Contract" />
+      <End Role="Entrance" EntitySet="Entrance" />
+    </AssociationSet>
     <AssociationSet Name="FK_Details_Gost" Association="Self.FK_Details_Gost">
       <End Role="Gost" EntitySet="Gost" />
       <End Role="Details" EntitySet="Details" />
@@ -224,5 +256,325 @@
       <End Role="Unit" EntitySet="Unit" />
       <End Role="Details" EntitySet="Details" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="DeviceShopModel.sysdiagrams" />
+    <EntitySet Name="Equipment" EntityType="DeviceShopModel.Equipment" />
+    <EntitySet Name="EquipmentFailure" EntityType="DeviceShopModel.EquipmentFailure" />
+    <EntitySet Name="FailureReason" EntityType="DeviceShopModel.FailureReason" />
+    <EntitySet Name="Products" EntityType="DeviceShopModel.Products" />
+    <EntitySet Name="Specifications" EntityType="DeviceShopModel.Specifications" />
+    <AssociationSet Name="FK_EquipmentFailure_Equipment" Association="DeviceShopModel.FK_EquipmentFailure_Equipment">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="EquipmentFailure" EntitySet="EquipmentFailure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EquipmentFailure_FailureReason" Association="DeviceShopModel.FK_EquipmentFailure_FailureReason">
+      <End Role="FailureReason" EntitySet="FailureReason" />
+      <End Role="EquipmentFailure" EntitySet="EquipmentFailure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Unit" Association="DeviceShopModel.FK_Products_Unit">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Specifications_Products" Association="DeviceShopModel.FK_Specifications_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Specifications" EntitySet="Specifications" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DeviceShopModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DeviceShopModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="ProductCharacteristics" EntityType="DeviceShopModel.ProductCharacteristics" />
+    <EntitySet Name="SpecificationComponents" EntityType="DeviceShopModel.SpecificationComponents" />
+    <EntitySet Name="SpecificationOperations" EntityType="DeviceShopModel.SpecificationOperations" />
+    <AssociationSet Name="FK_SpecificationComponents_Accessories" Association="DeviceShopModel.FK_SpecificationComponents_Accessories">
+      <End Role="Accessories" EntitySet="Accessories" />
+      <End Role="SpecificationComponents" EntitySet="SpecificationComponents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpecificationComponents_Details" Association="DeviceShopModel.FK_SpecificationComponents_Details">
+      <End Role="Details" EntitySet="Details" />
+      <End Role="SpecificationComponents" EntitySet="SpecificationComponents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpecificationOperations_Equipment" Association="DeviceShopModel.FK_SpecificationOperations_Equipment">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="SpecificationOperations" EntitySet="SpecificationOperations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCharacteristics_Specifications" Association="DeviceShopModel.FK_ProductCharacteristics_Specifications">
+      <End Role="Specifications" EntitySet="Specifications" />
+      <End Role="ProductCharacteristics" EntitySet="ProductCharacteristics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpecificationComponents_Specifications" Association="DeviceShopModel.FK_SpecificationComponents_Specifications">
+      <End Role="Specifications" EntitySet="Specifications" />
+      <End Role="SpecificationComponents" EntitySet="SpecificationComponents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpecificationOperations_Specifications" Association="DeviceShopModel.FK_SpecificationOperations_Specifications">
+      <End Role="Specifications" EntitySet="Specifications" />
+      <End Role="SpecificationOperations" EntitySet="SpecificationOperations" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InstallationDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="EquipmentFailure" Relationship="DeviceShopModel.FK_EquipmentFailure_Equipment" FromRole="Equipment" ToRole="EquipmentFailure" />
+    <NavigationProperty Name="SpecificationOperations" Relationship="DeviceShopModel.FK_SpecificationOperations_Equipment" FromRole="Equipment" ToRole="SpecificationOperations" />
+  </EntityType>
+  <EntityType Name="EquipmentFailure">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+    <Property Name="FailureReasonId" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="Notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ReportedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FixedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Equipment" Relationship="DeviceShopModel.FK_EquipmentFailure_Equipment" FromRole="EquipmentFailure" ToRole="Equipment" />
+    <NavigationProperty Name="FailureReason" Relationship="DeviceShopModel.FK_EquipmentFailure_FailureReason" FromRole="EquipmentFailure" ToRole="FailureReason" />
+  </EntityType>
+  <EntityType Name="FailureReason">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="EquipmentFailure" Relationship="DeviceShopModel.FK_EquipmentFailure_FailureReason" FromRole="FailureReason" ToRole="EquipmentFailure" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UnitId" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Unit" Relationship="DeviceShopModel.FK_Products_Unit" FromRole="Products" ToRole="Unit" />
+    <NavigationProperty Name="Specifications" Relationship="DeviceShopModel.FK_Specifications_Products" FromRole="Products" ToRole="Specifications" />
+  </EntityType>
+  <EntityType Name="Specifications">
+    <Key>
+      <PropertyRef Name="SpecificationId" />
+    </Key>
+    <Property Name="SpecificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="DeviceShopModel.FK_Specifications_Products" FromRole="Specifications" ToRole="Products" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ProductCharacteristics" Relationship="DeviceShopModel.FK_ProductCharacteristics_Specifications" FromRole="Specifications" ToRole="ProductCharacteristics" />
+    <NavigationProperty Name="SpecificationComponents" Relationship="DeviceShopModel.FK_SpecificationComponents_Specifications" FromRole="Specifications" ToRole="SpecificationComponents" />
+    <NavigationProperty Name="SpecificationOperations" Relationship="DeviceShopModel.FK_SpecificationOperations_Specifications" FromRole="Specifications" ToRole="SpecificationOperations" />
+  </EntityType>
+  <Association Name="FK_EquipmentFailure_Equipment">
+    <End Type="DeviceShopModel.Equipment" Role="Equipment" Multiplicity="1" />
+    <End Type="DeviceShopModel.EquipmentFailure" Role="EquipmentFailure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentFailure">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EquipmentFailure_FailureReason">
+    <End Type="DeviceShopModel.FailureReason" Role="FailureReason" Multiplicity="1" />
+    <End Type="DeviceShopModel.EquipmentFailure" Role="EquipmentFailure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FailureReason">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentFailure">
+        <PropertyRef Name="FailureReasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Unit">
+    <End Type="DeviceShopModel.Unit" Role="Unit" Multiplicity="1" />
+    <End Type="DeviceShopModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Specifications_Products">
+    <End Type="DeviceShopModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="DeviceShopModel.Specifications" Role="Specifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Specifications">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="ProductCharacteristics">
+    <Key>
+      <PropertyRef Name="CharacteristicId" />
+    </Key>
+    <Property Name="CharacteristicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecificationId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Specifications" Relationship="DeviceShopModel.FK_ProductCharacteristics_Specifications" FromRole="ProductCharacteristics" ToRole="Specifications" />
+  </EntityType>
+  <EntityType Name="SpecificationComponents">
+    <Key>
+      <PropertyRef Name="ComponentId" />
+    </Key>
+    <Property Name="ComponentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecificationId" Type="Int32" Nullable="false" />
+    <Property Name="AccessoriesId" Type="Int32" />
+    <Property Name="DetailsId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Accessories" Relationship="DeviceShopModel.FK_SpecificationComponents_Accessories" FromRole="SpecificationComponents" ToRole="Accessories" />
+    <NavigationProperty Name="Details" Relationship="DeviceShopModel.FK_SpecificationComponents_Details" FromRole="SpecificationComponents" ToRole="Details" />
+    <NavigationProperty Name="Specifications" Relationship="DeviceShopModel.FK_SpecificationComponents_Specifications" FromRole="SpecificationComponents" ToRole="Specifications" />
+  </EntityType>
+  <EntityType Name="SpecificationOperations">
+    <Key>
+      <PropertyRef Name="OperationId" />
+    </Key>
+    <Property Name="OperationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecificationId" Type="Int32" Nullable="false" />
+    <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+    <Property Name="SequenceNumber" Type="Int32" Nullable="false" />
+    <Property Name="Duration" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Equipment" Relationship="DeviceShopModel.FK_SpecificationOperations_Equipment" FromRole="SpecificationOperations" ToRole="Equipment" />
+    <NavigationProperty Name="Specifications" Relationship="DeviceShopModel.FK_SpecificationOperations_Specifications" FromRole="SpecificationOperations" ToRole="Specifications" />
+  </EntityType>
+  <Association Name="FK_SpecificationComponents_Accessories">
+    <End Type="DeviceShopModel.Accessories" Role="Accessories" Multiplicity="0..1" />
+    <End Type="DeviceShopModel.SpecificationComponents" Role="SpecificationComponents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accessories">
+        <PropertyRef Name="AccessoriesId" />
+      </Principal>
+      <Dependent Role="SpecificationComponents">
+        <PropertyRef Name="AccessoriesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpecificationComponents_Details">
+    <End Type="DeviceShopModel.Details" Role="Details" Multiplicity="0..1" />
+    <End Type="DeviceShopModel.SpecificationComponents" Role="SpecificationComponents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Details">
+        <PropertyRef Name="DetailsId" />
+      </Principal>
+      <Dependent Role="SpecificationComponents">
+        <PropertyRef Name="DetailsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpecificationOperations_Equipment">
+    <End Type="DeviceShopModel.Equipment" Role="Equipment" Multiplicity="1" />
+    <End Type="DeviceShopModel.SpecificationOperations" Role="SpecificationOperations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SpecificationOperations">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCharacteristics_Specifications">
+    <End Type="DeviceShopModel.Specifications" Role="Specifications" Multiplicity="1" />
+    <End Type="DeviceShopModel.ProductCharacteristics" Role="ProductCharacteristics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specifications">
+        <PropertyRef Name="SpecificationId" />
+      </Principal>
+      <Dependent Role="ProductCharacteristics">
+        <PropertyRef Name="SpecificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpecificationComponents_Specifications">
+    <End Type="DeviceShopModel.Specifications" Role="Specifications" Multiplicity="1" />
+    <End Type="DeviceShopModel.SpecificationComponents" Role="SpecificationComponents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specifications">
+        <PropertyRef Name="SpecificationId" />
+      </Principal>
+      <Dependent Role="SpecificationComponents">
+        <PropertyRef Name="SpecificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpecificationOperations_Specifications">
+    <End Type="DeviceShopModel.Specifications" Role="Specifications" Multiplicity="1" />
+    <End Type="DeviceShopModel.SpecificationOperations" Role="SpecificationOperations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specifications">
+        <PropertyRef Name="SpecificationId" />
+      </Principal>
+      <Dependent Role="SpecificationOperations">
+        <PropertyRef Name="SpecificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

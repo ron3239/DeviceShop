@@ -14,6 +14,12 @@ namespace DeviceShop
     
     public partial class Details
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Details()
+        {
+            this.SpecificationComponents = new HashSet<SpecificationComponents>();
+        }
+    
         public int DetailsId { get; set; }
         public int ArticleId { get; set; }
         public string Name { get; set; }
@@ -28,5 +34,7 @@ namespace DeviceShop
         public virtual TypeDetails TypeDetails { get; set; }
         public virtual Unit Unit { get; set; }
         public virtual Unit Unit1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SpecificationComponents> SpecificationComponents { get; set; }
     }
 }

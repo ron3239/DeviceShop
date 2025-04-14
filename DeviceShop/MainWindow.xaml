@@ -19,6 +19,7 @@
             </Grid.ColumnDefinitions>
 
             <Image Source="./assets/logo.png"/>
+            <Button Grid.Column="2" Margin="10" Width="100" Height="50" HorizontalAlignment="Right" Click="BackClick" Content="Назад"/>
         </Grid>
 
         <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>

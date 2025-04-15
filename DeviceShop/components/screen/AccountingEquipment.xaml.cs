@@ -12,6 +12,18 @@ namespace DeviceShop.components.screen
     public partial class AccountingEquipment : Page
     {
         private List<dynamic> _allEquipment = new List<dynamic>();
+        public class EquipmentDto
+        {
+            public int ArticleId { get; set; }
+            public string Name { get; set; }
+            public double Count { get; set; }
+            public decimal Price { get; set; }
+            public int TypeDetailsId { get; set; }
+            public string ArticleName { get; set; }
+            public string GostName { get; set; }
+            public string TypeDetailsName { get; set; }
+            public string UnitName { get; set; }
+        }
 
         public AccountingEquipment()
         {
@@ -82,14 +94,40 @@ namespace DeviceShop.components.screen
         }
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (DataGrid.SelectedItem == null) return;
+            try
+            {
+                if (DataGrid.SelectedItem == null) return;
 
-            dynamic selected = DataGrid.SelectedItem;
-            int productId = selected.ArticleId;
+                // Получаем выбранный элемент как EquipmentDto
+                var selectedItem = (EquipmentDto)DataGrid.SelectedItem;
 
-            // Переход к спецификации изделия
-            var specView = new SpecificationView(productId);
-            NavigationService.Navigate(specView);
+                using (var db = new DeviceShopEntities2())
+                {
+                    // Получаем полный объект Details из базы данных
+                    var fullDetails = db.Details
+                        .Include("Article")
+                        .Include("Gost")
+                        .Include("TypeDetails")
+                        .Include("Unit")
+                        .FirstOrDefault(d => d.ArticleId == selectedItem.ArticleId);
+
+                    if (fullDetails != null)
+                    {
+                        // Открываем окно редактирования
+                        var editWindow = new EditSpecificationItemWindow(fullDetails);
+                        if (editWindow.ShowDialog() == true)
+                        {
+                            // Обновляем данные после редактирования
+                            LoadEquipmentData();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при открытии спецификации: {ex.Message}", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

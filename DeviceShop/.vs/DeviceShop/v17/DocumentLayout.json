@@ -3,36 +3,20 @@
   "WorkspaceRootPath": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\entrance.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\entrance.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|a:\\project\\wpf\\ron3239\\deviceshop\\deviceshop\\components\\screen\\entrance.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\entrance.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|a:\\project\\wpf\\ron3239\\deviceshop\\deviceshop\\components\\screen\\assemblypage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\assemblypage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\specificationview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\specificationview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\accountingequipment.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|a:\\project\\wpf\\ron3239\\deviceshop\\deviceshop\\components\\screen\\accountingequipment.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\accountingequipment.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|a:\\project\\wpf\\ron3239\\deviceshop\\deviceshop\\components\\screen\\specificationview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\specificationview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|a:\\project\\wpf\\ron3239\\deviceshop\\deviceshop\\components\\screen\\specificationview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\specificationview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|a:\\project\\wpf\\ron3239\\deviceshop\\deviceshop\\components\\screen\\accountingequipment.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AF93D7D5-417D-46C4-9C25-A58C6DF6F59D}|DeviceShop.csproj|solutionrelative:components\\screen\\accountingequipment.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,45 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SpecificationView.xaml",
-              "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\SpecificationView.xaml",
-              "RelativeDocumentMoniker": "components\\screen\\SpecificationView.xaml",
-              "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\SpecificationView.xaml",
-              "RelativeToolTip": "components\\screen\\SpecificationView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-14T20:50:57.065Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Entrance.xaml",
-              "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\Entrance.xaml",
-              "RelativeDocumentMoniker": "components\\screen\\Entrance.xaml",
-              "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\Entrance.xaml",
-              "RelativeToolTip": "components\\screen\\Entrance.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-14T22:14:52.963Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AssemblyPage.xaml",
-              "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\AssemblyPage.xaml",
-              "RelativeDocumentMoniker": "components\\screen\\AssemblyPage.xaml",
-              "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\AssemblyPage.xaml",
-              "RelativeToolTip": "components\\screen\\AssemblyPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-14T22:14:47.656Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -91,66 +38,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Entrance.xaml.cs",
-              "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\Entrance.xaml.cs",
-              "RelativeDocumentMoniker": "components\\screen\\Entrance.xaml.cs",
-              "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\Entrance.xaml.cs",
-              "RelativeToolTip": "components\\screen\\Entrance.xaml.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAA8wGYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T18:26:14.056Z",
+              "DocumentIndex": 3,
+              "Title": "AccountingEquipment.xaml",
+              "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\AccountingEquipment.xaml",
+              "RelativeDocumentMoniker": "components\\screen\\AccountingEquipment.xaml",
+              "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\AccountingEquipment.xaml",
+              "RelativeToolTip": "components\\screen\\AccountingEquipment.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-15T21:17:32.01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "AccountingEquipment.xaml.cs",
               "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\AccountingEquipment.xaml.cs",
               "RelativeDocumentMoniker": "components\\screen\\AccountingEquipment.xaml.cs",
               "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\AccountingEquipment.xaml.cs",
               "RelativeToolTip": "components\\screen\\AccountingEquipment.xaml.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAowFUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAQwHcAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T20:05:04.867Z",
+              "WhenOpened": "2025-04-15T21:18:36.376Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Main.xaml",
-              "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\Main.xaml",
-              "RelativeDocumentMoniker": "components\\screen\\Main.xaml",
-              "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\Main.xaml",
-              "RelativeToolTip": "components\\screen\\Main.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-08T21:54:47.281Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Main.xaml.cs",
-              "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\Main.xaml.cs",
-              "RelativeDocumentMoniker": "components\\screen\\Main.xaml.cs",
-              "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\Main.xaml.cs",
-              "RelativeToolTip": "components\\screen\\Main.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T18:23:45.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "SpecificationView.xaml.cs",
               "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\SpecificationView.xaml.cs",
               "RelativeDocumentMoniker": "components\\screen\\SpecificationView.xaml.cs",
               "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\SpecificationView.xaml.cs",
               "RelativeToolTip": "components\\screen\\SpecificationView.xaml.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAUwKcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T20:52:07.407Z",
+              "WhenOpened": "2025-04-15T21:27:47.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SpecificationView.xaml",
+              "DocumentMoniker": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\SpecificationView.xaml",
+              "RelativeDocumentMoniker": "components\\screen\\SpecificationView.xaml",
+              "ToolTip": "A:\\project\\wpf\\ron3239\\DeviceShop\\DeviceShop\\components\\screen\\SpecificationView.xaml",
+              "RelativeToolTip": "components\\screen\\SpecificationView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-15T21:27:50.634Z",
               "EditorCaption": ""
             }
           ]

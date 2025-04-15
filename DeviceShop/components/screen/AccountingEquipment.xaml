@@ -40,9 +40,9 @@
             <DataGrid.Columns>
                 <!-- Основные свойства -->
                 <DataGridTextColumn Header="ID статьи" Binding="{Binding ArticleId}" Width="Auto"/>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="100"/>
-                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="Auto"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="Auto"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="Auto"/>
                 <DataGridTextColumn Header="ID типа" Binding="{Binding TypeDetailsId}" Width="Auto"/>
 
                 <!-- Связанные свойства -->

@@ -10,6 +10,8 @@ namespace DeviceShop.components.screen
 {
     public partial class Entrance : Page
     {
+        private DeviceShopEntities2 _db = new DeviceShopEntities2();
+
         private List<EntranceItem> _items = new List<EntranceItem>();
 
 
@@ -34,27 +36,31 @@ namespace DeviceShop.components.screen
         }
         private void LoadDogovor()
         {
-            using (var db = new DeviceShopEntities2())
+            try
             {
-                var _contractId = db.Contract.Select(d=>d.ContractId).ToArray();
-                ComboBoxDogovor.ItemsSource = _contractId;
-                if (ComboBoxDogovor.SelectedItem is Contract selectedContract)
-                {
-                    // Загружаем поставщиков для выбранного договора
-                    var suppliers = db.Entrance
-                        .Where(s => s.EntranceId == selectedContract.ContractId)
-                        .ToList();
+                // Загружаем договора
+                var contracts = _db.Contract.ToList();
 
-                }
+                ComboBoxDogovor.ItemsSource = contracts;
+                ComboBoxDogovor.DisplayMemberPath = "ContractId";
+                ComboBoxDogovor.SelectedValuePath = "ContractId";
 
-
+                ComboBoxDogovor.SelectionChanged += ComboBoxDogovor_SelectionChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки договоров: {ex.Message}");
             }
         }
 
         private void ComboBoxDogovor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (ComboBoxDogovor.SelectedItem is Contract selectedContract)
+            {
+                Suppliers.Text = selectedContract.NameProvider;
+            }
         }
+
 
         private void LoadId()
         {

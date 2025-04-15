@@ -73,9 +73,19 @@ namespace DeviceShop.components.screen
                         Error = f.FailureReason.Description,
                         startTime = f.StartTime,
                         endTime = f.EndTime,
-                        Duration = f.EndTime.HasValue ? (f.EndTime - f.StartTime).ToString() : "В процессе",
-                        ReportedBy = f.ReportedBy,
-                        FixedBy = f.FixedBy
+                        f.ReportedBy,
+                        f.FixedBy
+                    })
+                    .AsEnumerable() // Переключаем на клиентскую обработку
+                    .Select(f => new
+                    {
+                        f.Device,
+                        f.Error,
+                        f.startTime,
+                        f.endTime,
+                        Duration = f.endTime.HasValue ? (f.endTime - f.startTime).ToString() : "В процессе",
+                        f.ReportedBy,
+                        f.FixedBy
                     })
                     .ToList();
 
